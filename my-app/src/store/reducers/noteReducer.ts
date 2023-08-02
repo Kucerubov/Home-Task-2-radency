@@ -83,6 +83,16 @@ export const noteReducer = (state: NoteState[] = testData, action: NoteAction): 
                 }
                 return note;
             });
+        case NoteActionsTypes.EDIT_NOTE:
+            return state.map(note => {
+                if (note.id === action.payload.id) {
+                    return {
+                        ...note,
+                        ...action.payload
+                    };
+                }
+                return note;
+            });
         default:
             return state;
     }

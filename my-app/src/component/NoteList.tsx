@@ -15,9 +15,9 @@ const NoteList: React.FC<TableProps> = ({ data, isNotesTable }) => {
                         <TableCell>{isNotesTable ? 'Category' : 'Archived'}</TableCell>
                         <TableCell>{isNotesTable ? 'Content' : ''}</TableCell>
                         <TableCell>{isNotesTable ? 'Dates' : ''}</TableCell>
-                        <TableCell>{isNotesTable ? 'Delete' : ''}</TableCell>
-                        <TableCell>{isNotesTable ? 'Archived' : ''}</TableCell>
                         <TableCell>{isNotesTable ? 'Edit' : ''}</TableCell>
+                        <TableCell>{isNotesTable ? 'Archived' : ''}</TableCell>
+                        <TableCell>{isNotesTable ? 'Delete' : ''}</TableCell>
                     </TableRow>
                 </TableHead>
                 <TableBody>

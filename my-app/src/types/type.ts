@@ -16,7 +16,8 @@ export interface NoteAction {
 export enum NoteActionsTypes {
     ADD_NOTE = "ADD_NOTE",
     REMOVE_NOTE = "REMOVE_NOTE",
-    ARCHIVE_STATE_CHANGE = "ARCHIVE_STATE_CHANGE"
+    ARCHIVE_STATE_CHANGE = "ARCHIVE_STATE_CHANGE",
+    EDIT_NOTE = "EDIT_NOTE"
 }
 
 export interface TableProps {
