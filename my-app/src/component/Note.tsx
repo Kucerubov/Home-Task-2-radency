@@ -1,13 +1,17 @@
 import React from 'react';
 import {Button, TableCell, TableRow} from '@mui/material';
 import {NoteState, TableProps} from '../types/type';
-import {removeNoteAction} from "../store/actions/noteActions";
+import {changeArhivedNoteAction, removeNoteAction} from "../store/actions/noteActions";
 import {useDispatch} from "react-redux";
 
 const Note: React.FC<TableProps> = ({ data, isNotesTable }) => {
     const dispatch = useDispatch()
     const removeNote = (note: NoteState) => {
         dispatch(removeNoteAction(note))
+    }
+
+    const changeArchived = (note: NoteState) => {
+        dispatch(changeArhivedNoteAction(note))
     }
 
     return (
@@ -22,6 +26,20 @@ const Note: React.FC<TableProps> = ({ data, isNotesTable }) => {
                     <TableCell>
                         {isNotesTable ? (
                             <Button onClick={() => removeNote(item)}>Delete</Button>
+                        ) : (
+                            ''
+                        )}
+                    </TableCell>
+                    <TableCell>
+                        {isNotesTable ? (
+                            <Button onClick={() => changeArchived(item)}>Archived</Button>
+                        ) : (
+                            ''
+                        )}
+                    </TableCell>
+                    <TableCell>
+                        {isNotesTable ? (
+                            <Button>Edit</Button>
                         ) : (
                             ''
                         )}
