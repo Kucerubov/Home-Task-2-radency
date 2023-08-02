@@ -25,7 +25,7 @@ const Note: React.FC<TableProps> = ({ data, isNotesTable }) => {
                     <TableCell>{isNotesTable ? item.dates : ''}</TableCell>
                     <TableCell>
                         {isNotesTable ? (
-                            <Button onClick={() => removeNote(item)}>Delete</Button>
+                            <Button>Edit</Button>
                         ) : (
                             ''
                         )}
@@ -39,7 +39,7 @@ const Note: React.FC<TableProps> = ({ data, isNotesTable }) => {
                     </TableCell>
                     <TableCell>
                         {isNotesTable ? (
-                            <Button>Edit</Button>
+                            <Button onClick={() => removeNote(item)}>Delete</Button>
                         ) : (
                             ''
                         )}
