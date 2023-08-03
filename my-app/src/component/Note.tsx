@@ -1,53 +1,19 @@
 
-import React, { useState } from 'react';
+import React from 'react';
 import { Button, TableCell, TableRow, TextField } from '@mui/material';
-import { NoteState, TableProps } from '../types/type';
-import {
-    changeArhivedNoteAction,
-    removeNoteAction,
-    editNoteAction
-} from '../store/actions/noteActions';
-import { useDispatch } from 'react-redux';
+import { TableProps } from '../types/type';
+import useNoteComponent from "../hooks/useNoteComponent";
 
 const Note: React.FC<TableProps> = ({ data, isNotesTable }) => {
-    const dispatch = useDispatch();
-    const [editMode, setEditMode] = useState(false);
-    const [editedData, setEditedData] = useState<NoteState | null>(null);
 
-    const removeNote = (note: NoteState) => {
-        dispatch(removeNoteAction(note));
-    };
-
-    const changeArchived = (note: NoteState) => {
-        dispatch(changeArhivedNoteAction(note));
-    };
-
-    const toggleEditMode = (note: NoteState) => {
-        if (editMode && editedData && editedData.id === note.id) {
-            saveChanges();
-        } else {
-            setEditMode(true);
-            setEditedData(note);
-        }
-    };
-
-    const saveChanges = () => {
-        if (editedData) {
-            dispatch(editNoteAction(editedData));
-            setEditMode(false);
-            setEditedData(null);
-        }
-    };
-
-    const handleInputChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-        if (editedData) {
-            const { name, value } = event.target;
-            setEditedData(prevData => ({
-                ...prevData,
-                [name]: value
-            }) as NoteState);
-        }
-    };
+        const {
+            editMode,
+            editedData,
+            removeNote,
+            changeArchived,
+            toggleEditMode,
+            handleInputChange,
+        } = useNoteComponent();
 
     return (
         <>
