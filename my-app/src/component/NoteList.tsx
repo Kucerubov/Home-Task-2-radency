@@ -1,7 +1,9 @@
 import React from 'react';
 import Note from './Note';
-import {Table, TableBody, TableCell, TableHead, TableRow} from "@mui/material";
+import {Table, TableBody, TableHead, TableRow} from "@mui/material";
 import {TableProps} from "../types/type";
+import {Archive as ArchiveIcon, Delete as DeleteIcon} from "@mui/icons-material";
+import {buttonContainerStyle, StyledTableCell, tableHeadCellStyle, tableStyle} from "./styles/NoteListStyle";
 
 const NoteList: React.FC<TableProps> = ({ data, isNotesTable }) => {
 
@@ -9,15 +11,13 @@ const NoteList: React.FC<TableProps> = ({ data, isNotesTable }) => {
         <>
             <Table>
                 <TableHead>
-                    <TableRow>
-                        <TableCell>{isNotesTable ? 'Name' : 'Category'}</TableCell>
-                        <TableCell>{isNotesTable ? 'Created' : 'Active'}</TableCell>
-                        <TableCell>{isNotesTable ? 'Category' : 'Archived'}</TableCell>
-                        <TableCell>{isNotesTable ? 'Content' : ''}</TableCell>
-                        <TableCell>{isNotesTable ? 'Dates' : ''}</TableCell>
-                        <TableCell>{isNotesTable ? 'Edit' : ''}</TableCell>
-                        <TableCell>{isNotesTable ? 'Archived' : ''}</TableCell>
-                        <TableCell>{isNotesTable ? 'Delete' : ''}</TableCell>
+                    <TableRow style={tableStyle}>
+                        <StyledTableCell style={tableHeadCellStyle}>{isNotesTable ? 'Name' : 'Category'}</StyledTableCell>
+                        <StyledTableCell style={tableHeadCellStyle}>{isNotesTable ? 'Created' : 'Active'}</StyledTableCell>
+                        <StyledTableCell style={tableHeadCellStyle}>{isNotesTable ? 'Category' : 'Archived'}</StyledTableCell>
+                        {isNotesTable && <StyledTableCell style={tableHeadCellStyle}>Content</StyledTableCell>}
+                        {isNotesTable && <StyledTableCell style={tableHeadCellStyle}>Dates</StyledTableCell>}
+                        {isNotesTable && <StyledTableCell><div style={buttonContainerStyle}> <ArchiveIcon style={{ marginRight: '15px' }}/><DeleteIcon /></div></StyledTableCell>}
                     </TableRow>
                 </TableHead>
                 <TableBody>

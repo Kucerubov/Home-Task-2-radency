@@ -1,12 +1,15 @@
-
 import React from 'react';
-import { Button, TableCell, TableRow, TextField } from '@mui/material';
+import {TableRow, TableCell, TextField, Select, MenuItem, IconButton} from '@mui/material';
 import { TableProps } from '../types/type';
 import useNoteComponent from "../hooks/useNoteComponent";
+import { Edit as EditIcon, Save as SaveIcon, Delete as DeleteIcon, Archive as ArchiveIcon, Unarchive as UnarchivedIcon} from '@mui/icons-material';
+import {buttonContainerStyle, grayRowStyle} from "./styles/NoteStyle";
 
 const Note: React.FC<TableProps> = ({ data, isNotesTable }) => {
 
         const {
+            handleCategoryChange,
+            saveChanges,
             editMode,
             editedData,
             removeNote,
@@ -18,7 +21,7 @@ const Note: React.FC<TableProps> = ({ data, isNotesTable }) => {
     return (
         <>
             {data.map((item: any) => (
-                <TableRow key={item.id || item.category}>
+                <TableRow key={item.id || item.category} style={grayRowStyle}>
                     <TableCell>
                         {editMode && editedData && editedData.id === item.id ? (
                             <TextField
@@ -35,56 +38,64 @@ const Note: React.FC<TableProps> = ({ data, isNotesTable }) => {
                     </TableCell>
                     <TableCell>
                         {editMode && editedData && editedData.id === item.id ? (
-                            <TextField
+                            <Select
                                 name="category"
                                 value={editedData.category}
-                                onChange={handleInputChange}
-                            />
+                                onChange={handleCategoryChange}
+                            >
+                                <MenuItem value="Idea">Idea</MenuItem>
+                                <MenuItem value="Task">Task</MenuItem>
+                                <MenuItem value="Random Thought">Random Thought</MenuItem>
+                            </Select>
                         ) : (
                             isNotesTable ? item.category : item.archivedCount
                         )}
                     </TableCell>
-                    <TableCell>
-                        {editMode && editedData && editedData.id === item.id ? (
-                            <TextField
-                                name="content"
-                                value={editedData.content}
-                                onChange={handleInputChange}
-                            />
-                        ) : (
-                            isNotesTable ? item.content : ''
-                        )}
-                    </TableCell>
-                    <TableCell>
-                        {isNotesTable ? item.dates : ''}
-                    </TableCell>
-                    <TableCell>
-                        {isNotesTable ? (
-                            <Button onClick={() => toggleEditMode(item)}>
-                                {editMode && editedData && editedData.id === item.id ? 'Save' : 'Edit'}
-                            </Button>
-                        ) : (
-                            ''
-                        )}
-                    </TableCell>
-                    <TableCell>
-                        {isNotesTable ? (
-                            <Button onClick={() => changeArchived(item)}>
-                                {item.archived ? 'Restore' : 'Archive'}
-                            </Button>
-                        ) : (
-                            ''
-                        )}
-                    </TableCell>
-                    <TableCell>
-                        {isNotesTable ? (
-                            <Button onClick={() => removeNote(item)}>Delete</Button>
-                        ) : (
-                            ''
-                        )}
-                    </TableCell>
-                </TableRow>
+                    {isNotesTable && (
+                        <TableCell style={{ overflow: 'hidden', textOverflow: 'ellipsis', maxWidth: '210px'}}>
+                            {editMode && editedData && editedData.id === item.id ? (
+                                <TextField
+                                    name="content"
+                                    value={editedData.content}
+                                    onChange={handleInputChange}
+                                    multiline
+                                    rows={4}
+                                    fullWidth
+                                />
+                            ) : (
+                                item.content
+                            )}
+                        </TableCell>
+                    )}
+                    {isNotesTable &&
+                        <TableCell>
+                            {item.dates}
+                        </TableCell>
+                    }
+                    {isNotesTable &&
+                        <TableCell>
+                                <div style={buttonContainerStyle}>
+                                    {editMode && editedData && editedData.id === item.id ? (
+                                        <IconButton onClick={saveChanges}>
+                                            <SaveIcon />
+                                        </IconButton>
+                                    ) : (
+                                        <IconButton onClick={() => toggleEditMode(item)}>
+                                            <EditIcon />
+                                        </IconButton>
+                                    )}
 
+                                    <IconButton onClick={() => changeArchived(item)}>
+                                        {item.archived ? <UnarchivedIcon /> : <ArchiveIcon />}
+                                    </IconButton>
+
+                                    <IconButton onClick={() => removeNote(item)}>
+                                        <DeleteIcon />
+                                    </IconButton>
+                                </div>
+                        </TableCell>
+                    }
+                </TableRow>
             ))}
         </>
     );

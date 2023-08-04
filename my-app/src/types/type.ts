@@ -20,7 +20,13 @@ export enum NoteActionsTypes {
     EDIT_NOTE = "EDIT_NOTE"
 }
 
+interface TablePropsTypes {
+ category: string,
+ activeCount: number,
+ archivedCount: number,
+}
+
 export interface TableProps {
-    data: any[];
+    data: (NoteState | TablePropsTypes)[];
     isNotesTable: boolean;
 }

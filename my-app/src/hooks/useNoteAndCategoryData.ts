@@ -23,10 +23,10 @@ const useNoteAndCategoryData = () => {
     const handleAddNote = () => {
         const newNote: NoteState = {
             id: uuid.v4(),
-            name: '',
+            name: 'Note',
             created: formattedDate(),
             category: 'Task',
-            content: '',
+            content: 'Post',
             dates: '',
             archived: false
         };
