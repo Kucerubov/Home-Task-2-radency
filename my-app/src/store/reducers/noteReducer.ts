@@ -1,6 +1,5 @@
 import {NoteAction, NoteActionsTypes, NoteState} from "../../types/type";
 
-
 const testData: NoteState[] = [
 {
     id: 'a95669b9-38d6-4fe1-91d8-9622af4dc2a7',
