@@ -1,26 +1,27 @@
 import React from 'react';
 import NoteList from "./NoteList";
-import {Button} from "@mui/material";
 import useNoteAndCategoryData from "../hooks/useNoteAndCategoryData";
-import {buttonShowNotes, buttonStylesBetweenTables} from "./styles/NoteAndCategoryTableStyle";
 
 const NoteAndCategoryTable = () => {
-
     const {combinedData, filteredNotes, showArchived, toggleArchived, handleAddNote } = useNoteAndCategoryData();
 
     return (
         <>
-            <div>
-                <NoteList data={filteredNotes} isNotesTable={true}/>
-                <div style={buttonStylesBetweenTables}>
-                    <div>
-                        <Button onClick={toggleArchived} variant="outlined" style={buttonShowNotes}>
-                            {showArchived ? 'Show Active Notes' : 'Show Archived Notes'}
-                        </Button>
-                        <Button onClick={handleAddNote} variant="outlined">
-                            Add Note
-                        </Button>
-                    </div>
+            <div className="flex flex-col">
+                <NoteList data={filteredNotes} isNotesTable={true} />
+                <div className="flex justify-end items-center mt-4 mb-4 space-x-2 px-4">
+                    <button
+                        onClick={toggleArchived}
+                        className="border rounded py-1 px-3 text-sm focus:outline-none"
+                    >
+                        {showArchived ? 'Show Active Notes' : 'Show Archived Notes'}
+                    </button>
+                    <button
+                        onClick={handleAddNote}
+                        className="border rounded py-1 px-3 text-sm focus:outline-none"
+                    >
+                        Add Note
+                    </button>
                 </div>
                 <NoteList data={combinedData} isNotesTable={false} />
             </div>

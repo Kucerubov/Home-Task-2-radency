@@ -1,15 +1,7 @@
 import React from 'react';
-import Note from './Note';
-import {Table, TableBody, TableHead, TableRow} from "@mui/material";
 import {TableProps} from "../types/type";
 import {Archive as ArchiveIcon, Delete as DeleteIcon} from "@mui/icons-material";
-import {
-    ArchiveIconsStyle,
-    buttonContainerStyle,
-    StyledTableCell,
-    tableHeadCellStyle,
-    tableStyle
-} from "./styles/NoteListStyle";
+import Note from './Note';
 
 const NoteList: React.FC<TableProps> = ({ data, isNotesTable }) => {
 
@@ -19,26 +11,30 @@ const NoteList: React.FC<TableProps> = ({ data, isNotesTable }) => {
 
     return (
         <>
-            <Table>
-                <TableHead>
-                        <TableRow style={tableStyle}>
-                            {headers.map((header, index) => (
-                                <StyledTableCell key={index} style={tableHeadCellStyle}>{header}</StyledTableCell>
-                            ))}
-                            {isNotesTable && (
-                                <StyledTableCell>
-                                    <div style={buttonContainerStyle}>
-                                        <ArchiveIcon  style={ArchiveIconsStyle}/>
-                                        <DeleteIcon />
-                                    </div>
-                                </StyledTableCell>
-                            )}
-                        </TableRow>
-                </TableHead>
-                <TableBody>
-                    <Note data={data} isNotesTable={isNotesTable}/>
-                </TableBody>
-            </Table>
+            <table className="w-full border-collapse table">
+                <thead>
+                <tr className="bg-gray-500 text-white">
+                    {headers.map((header, index) => (
+                        <th key={index}
+                            className="py-3 px-4 text-left text-sm font-semibold"
+                        >
+                            {header}
+                        </th>
+                    ))}
+                    {isNotesTable && (
+                        <th>
+                            <div className="py-3 px-4 flex items-center font-bold justify-end">
+                                <ArchiveIcon className="mr-4" />
+                                <DeleteIcon />
+                            </div>
+                        </th>
+                    )}
+                </tr>
+                </thead>
+                <tbody>
+                <Note data={data} isNotesTable={isNotesTable} />
+                </tbody>
+            </table>
         </>
     );
 };

@@ -1,8 +1,7 @@
-import React, {useState} from 'react';
+import React, {ChangeEvent, useState} from 'react';
 import {useDispatch} from 'react-redux';
 import {changeArhivedNoteAction, editNoteAction, removeNoteAction} from '../store/actions/noteActions';
 import {NoteState} from '../types/type';
-import {SelectChangeEvent} from "@mui/material";
 
 const extractDatesFromText = (text: string): string => {
     const dateRegex = /(\d{1,2}\/\d{1,2}\/\d{4})/g;
@@ -56,12 +55,14 @@ const useNoteComponent = () => {
         }
     };
 
-    const handleCategoryChange = (event: SelectChangeEvent<string>) => {
-        if (editedData) {
-            const { name, value } = event.target;
+    const handleCategoryChange = (event: ChangeEvent<{ value: any; name?: string }>) => {
+        if (editedData && event.target.name) {
+            const fieldName = event.target.name;
+            const fieldValue = event.target.value;
+
             setEditedData(prevData => ({
                 ...prevData,
-                [name]: value
+                [fieldName]: fieldValue
             }) as NoteState);
         }
     };
