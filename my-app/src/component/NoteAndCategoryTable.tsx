@@ -2,6 +2,7 @@ import React from 'react';
 import NoteList from "./NoteList";
 import {Button} from "@mui/material";
 import useNoteAndCategoryData from "../hooks/useNoteAndCategoryData";
+import {buttonShowNotes, buttonStylesBetweenTables} from "./styles/NoteAndCategoryTableStyle";
 
 const NoteAndCategoryTable = () => {
 
@@ -11,9 +12,9 @@ const NoteAndCategoryTable = () => {
         <>
             <div>
                 <NoteList data={filteredNotes} isNotesTable={true}/>
-                <div style={{ display: 'flex', justifyContent: 'flex-end', alignItems: 'center', margin: '10px'}}>
+                <div style={buttonStylesBetweenTables}>
                     <div>
-                        <Button onClick={toggleArchived} variant="outlined" style={{marginRight: '10px'}}>
+                        <Button onClick={toggleArchived} variant="outlined" style={buttonShowNotes}>
                             {showArchived ? 'Show Active Notes' : 'Show Archived Notes'}
                         </Button>
                         <Button onClick={handleAddNote} variant="outlined">

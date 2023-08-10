@@ -26,3 +26,7 @@ export const tableHeadCellStyle = {
     fontWeight: 'bold',
     color: 'white',
 };
+
+export const ArchiveIconsStyle = {
+    marginRight: '15px'
+};

@@ -3,7 +3,7 @@ import {TableRow, TableCell, TextField, Select, MenuItem, IconButton} from '@mui
 import { TableProps } from '../types/type';
 import useNoteComponent from "../hooks/useNoteComponent";
 import { Edit as EditIcon, Save as SaveIcon, Delete as DeleteIcon, Archive as ArchiveIcon, Unarchive as UnarchivedIcon} from '@mui/icons-material';
-import {buttonContainerStyle, grayRowStyle} from "./styles/NoteStyle";
+import {buttonContainerStyle, cellOverflowStyle, grayRowStyle} from "./styles/NoteStyle";
 
 const Note: React.FC<TableProps> = ({ data, isNotesTable }) => {
 
@@ -52,7 +52,7 @@ const Note: React.FC<TableProps> = ({ data, isNotesTable }) => {
                         )}
                     </TableCell>
                     {isNotesTable && (
-                        <TableCell style={{ overflow: 'hidden', textOverflow: 'ellipsis', maxWidth: '210px'}}>
+                        <TableCell style={cellOverflowStyle}>
                             {editMode && editedData && editedData.id === item.id ? (
                                 <TextField
                                     name="content"

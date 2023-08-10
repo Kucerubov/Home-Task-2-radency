@@ -7,3 +7,9 @@ export const buttonContainerStyle = {
     gap: '8px',
     justifyContent: 'flex-end'
 };
+
+export const cellOverflowStyle = {
+    overflow: 'hidden',
+    textOverflow: 'ellipsis',
+    maxWidth: '210px',
+};
