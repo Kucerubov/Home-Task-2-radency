@@ -7,7 +7,7 @@ const NoteAndCategoryTable = () => {
 
     return (
         <>
-            <div className="flex flex-col">
+            <div className="flex flex-col m-10">
                 <NoteList data={filteredNotes} isNotesTable={true} />
                 <div className="flex justify-end items-center mt-4 mb-4 space-x-2 px-4">
                     <button

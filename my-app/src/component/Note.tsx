@@ -54,7 +54,7 @@ const Note: React.FC<TableProps> = ({ data, isNotesTable }) => {
                        )}
                    </td >
                    {isNotesTable && (
-                       <td className="py-3 px-4 font-semibold overflow-hidden text-ellipsis max-w-[210px]">
+                       <td className="py-3 px-4 text-sm font-semibold overflow-hidden text-ellipsis max-w-[210px]">
                            {editMode && editedData && editedData.id === item.id ? (
                                <textarea
                                    name="content"

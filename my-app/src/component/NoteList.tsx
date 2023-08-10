@@ -13,7 +13,7 @@ const NoteList: React.FC<TableProps> = ({ data, isNotesTable }) => {
         <>
             <table className="w-full border-collapse table">
                 <thead>
-                <tr className="bg-gray-500 text-white">
+                <tr className="bg-gray-400 text-white">
                     {headers.map((header, index) => (
                         <th key={index}
                             className="py-3 px-4 text-left text-sm font-semibold"
